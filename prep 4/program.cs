@@ -7,12 +7,16 @@ class Program
     {
         List<int> numbers = new List<int>();
 
+        Console.WriteLine("Enter a list of numbers, type 0 when finished.");
+
         int userNumber = -1;
 
         while (userNumber != 0)
         {
-            Console.Write("Enter a number (0 to quit): ");
-            userNumber = int.Parse(Console.ReadLine());
+            Console.Write("Enter number: ");
+            string input = Console.ReadLine();
+
+            userNumber = int.Parse(input);
 
             if (userNumber != 0)
             {
@@ -27,7 +31,7 @@ class Program
             sum += number;
         }
 
-        double average = (double)sum / numbers.Count;
+        double average = ((double)sum) / numbers.Count;
 
         int largest = numbers[0];
 
@@ -39,8 +43,28 @@ class Program
             }
         }
 
+        int smallestPositive = int.MaxValue;
+
+        foreach (int number in numbers)
+        {
+            if (number > 0 && number < smallestPositive)
+            {
+                smallestPositive = number;
+            }
+        }
+
+        numbers.Sort();
+
         Console.WriteLine($"The sum is: {sum}");
         Console.WriteLine($"The average is: {average}");
         Console.WriteLine($"The largest number is: {largest}");
+        Console.WriteLine($"The smallest positive number is: {smallestPositive}");
+
+        Console.WriteLine("The sorted list is:");
+
+        foreach (int number in numbers)
+        {
+            Console.WriteLine(number);
+        }
     }
 }
