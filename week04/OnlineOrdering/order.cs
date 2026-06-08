@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 
 public class Order
@@ -22,10 +23,35 @@ public class Order
             total += product.GetTotalCost();
         }
 
-        total += _customer.LivesInUSA()
-            ? 5
-            : 35;
+        if (_customer.LivesInUSA())
+        {
+            total += 5;
+        }
+        else
+        {
+            total += 35;
+        }
 
         return total;
+    }
+
+    public string GetPackingLabel()
+    {
+        StringBuilder label = new StringBuilder();
+
+        foreach (Product product in _products)
+        {
+            label.AppendLine(
+                $"{product.GetName()} - {product.GetProductId()}");
+        }
+
+        return label.ToString();
+    }
+
+    public string GetShippingLabel()
+    {
+        return
+            $"{_customer.GetName()}\n" +
+            $"{_customer.GetAddress().GetFullAddress()}";
     }
 }
