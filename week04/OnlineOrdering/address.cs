@@ -19,11 +19,11 @@ public class Address
 
     public bool IsUSA()
     {
-        return _country == "USA";
+        return _country.ToUpper() == "USA";
     }
 
-    public string GetAddress()
+    public string GetFullAddress()
     {
-        return $"{_street}\n{_city}\n{_state}\n{_country}";
+        return $"{_street}\n{_city}, {_state}\n{_country}";
     }
 }

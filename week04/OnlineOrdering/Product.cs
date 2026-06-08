@@ -7,12 +7,12 @@ public class Product
 
     public Product(
         string name,
-        string id,
+        string productId,
         double price,
         int quantity)
     {
         _name = name;
-        _productId = id;
+        _productId = productId;
         _price = price;
         _quantity = quantity;
     }
